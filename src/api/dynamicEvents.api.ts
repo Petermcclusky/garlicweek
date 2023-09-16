@@ -1,11 +1,9 @@
 import {GarlicEvents} from "@app/api/events.api";
 import Papa, {ParseResult} from 'papaparse';
 
-// const spreadsheetUrl = "https://docs.google.com/spreadsheets/d/1AqsxVS_zoEuxVEDeXvCG0BRVLJJXV_eA-L_nz9DxWx8/export?format=csv&gid=0";
-const spreadsheetUrl = "https://docs.google.com/spreadsheets/d/1AqsxVS_zoEuxVEDeXvCG0BRVLJJXV_eA-L_nz9DxWx8/export?format=csv&gid=556673023";
+const spreadsheetUrl = "https://docs.google.com/spreadsheets/d/1AqsxVS_zoEuxVEDeXvCG0BRVLJJXV_eA-L_nz9DxWx8/export?format=csv&gid=168762648";
 
 let sharedEvent: Promise<GarlicEvents[]>| null = null;
-
 
 
 export const getEvents = (): Promise<GarlicEvents[]> => {

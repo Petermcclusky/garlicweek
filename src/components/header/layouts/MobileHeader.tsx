@@ -31,9 +31,9 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ toggleSider, isSider
           <BaseCol>
             <MapViewButton />
           </BaseCol>
-          <BaseCol>
-            <CalendarViewButton />
-          </BaseCol>
+          {/*<BaseCol>*/}
+          {/*  <CalendarViewButton />*/}
+          {/*</BaseCol>*/}
         </BaseRow>
       </BaseCol>
       <S.BurgerCol>

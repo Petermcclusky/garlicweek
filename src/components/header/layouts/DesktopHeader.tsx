@@ -60,9 +60,9 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
               <BaseCol>
                 <MapViewButton />
               </BaseCol>
-              <BaseCol>
-                <CalendarViewButton />
-              </BaseCol>
+              {/*<BaseCol>*/}
+              {/*  <CalendarViewButton />*/}
+              {/*</BaseCol>*/}
               <BaseCol>
                 <HeaderFullscreen />
               </BaseCol>

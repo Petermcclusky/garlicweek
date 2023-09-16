@@ -15,6 +15,9 @@ import { setSearchedItem } from '@app/store/slices/filterSlice';
 import { useDispatch } from 'react-redux';
 
 const { Title, Text, Link } = BaseTypography;
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 import GeocoderControl from './GeocoderControl';
@@ -68,7 +71,7 @@ export default function Mapbox() {
   // console.log(data);
   const pins = useMemo(
     () =>
-      events?.map((city, index) => (
+      events?.filter(value => value.coordinate && value.coordinate?.length > 1).map((city, index) => (
         <Marker
           key={`marker-${index}`}
           longitude={city.coordinate ? city.coordinate[0] : 0}
@@ -101,7 +104,6 @@ export default function Mapbox() {
       )),
     [events, popupInfo],
   );
-  console.log(popupInfo);
   const website = (data = '', type = '') =>
     data && data !== 'none' && data != 'N/A' ? (
       <Text>

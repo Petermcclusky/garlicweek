@@ -6,14 +6,15 @@ export const References: React.FC = () => {
   return (
     <S.ReferencesWrapper>
       <S.Text>
-        Imbedded with{' '}
+        {' '}
         <a href="https://www.ontariogarlicweek.ca/" target="_blank" rel="noreferrer">
           Ontario Garlic Week{' '}
         </a>
-        2023 &copy;. Supported by{' '}
+        is a project of {' '}
         <a href="https://www.torontogarlicfestival.ca/" target="_blank" rel="noreferrer">
-          Toronto Garlic Festival.
+          Toronto Garlic Festival
         </a>
+        (an Ontario not-for-profit)
       </S.Text>
       <S.Icons>
         <a href="https://twitter.com/ONGarlicWeek" target="_blank" rel="noreferrer">

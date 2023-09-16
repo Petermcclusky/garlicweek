@@ -1,9 +1,12 @@
 /* eslint-disable prettier/prettier */
-const avatar1 = process.env.REACT_APP_ASSETS_BUCKET + '/avatars/avatar1.webp';
-const avatar2 = process.env.REACT_APP_ASSETS_BUCKET + '/avatars/avatar2.webp';
-const avatar3 = process.env.REACT_APP_ASSETS_BUCKET + '/avatars/avatar3.webp';
-const avatar4 = process.env.REACT_APP_ASSETS_BUCKET + '/avatars/avatar4.webp';
+import {getEvents as dynamicGetEvents} from "./dynamicEvents.api";
+//
+// const avatar1 = process.env.REACT_APP_ASSETS_BUCKET + '/avatars/avatar1.webp';
+// const avatar2 = process.env.REACT_APP_ASSETS_BUCKET + '/avatars/avatar2.webp';
+// const avatar3 = process.env.REACT_APP_ASSETS_BUCKET + '/avatars/avatar3.webp';
+// const avatar4 = process.env.REACT_APP_ASSETS_BUCKET + '/avatars/avatar4.webp';
 
+const useDynamicEvents = true;
 export interface GarlicEvents {
   _id: string;
   category: string;
@@ -31,6 +34,9 @@ export interface GarlicEvents {
 }
 
 export const getEvents = (): Promise<GarlicEvents[]> => {
+  if (useDynamicEvents) {
+    return dynamicGetEvents();
+  }
   return new Promise((res) => {
     setTimeout(() => {
       res([

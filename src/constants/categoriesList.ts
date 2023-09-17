@@ -1,8 +1,8 @@
 export type CategoryType =
   | 'Farm'
   | "Farmers' Market"
-  | 'Restaurant'
-  | 'Special Activity'
+  | 'Food & Beverage'
+  | 'Garlic Spotlight'
   | 'Community Organization'
   | 'Independent Grocer';
 
@@ -21,12 +21,12 @@ export const categoriesList: Category[] = [
     title: "Farmers' Market",
   },
   {
-    name: 'Restaurant',
-    title: 'Restaurant',
+    name: 'Food & Beverage',
+    title: 'Food & Beverage',
   },
   {
-    name: 'Special Activity',
-    title: 'Special Activity',
+    name: 'Garlic Spotlight',
+    title: 'Garlic Spotlight',
   },
   {
     name: 'Community Organization',

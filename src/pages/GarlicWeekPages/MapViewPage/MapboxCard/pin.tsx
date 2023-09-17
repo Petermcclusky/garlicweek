@@ -22,7 +22,7 @@ function Pin({ title = <></>, category = '' }) {
       picon = faStore;
       pic = 'pin2';
       break;
-    case 'Restaurant':
+    case 'Food & Beverage':
       picon = faUtensils;
       pic = 'pin3';
       break;
@@ -34,7 +34,7 @@ function Pin({ title = <></>, category = '' }) {
       picon = faCartShopping;
       pic = 'pin5';
       break;
-    case 'Special Activity':
+    case 'Garlic Spotlight':
       picon = faPersonChalkboard;
       pic = 'pin6';
       break;

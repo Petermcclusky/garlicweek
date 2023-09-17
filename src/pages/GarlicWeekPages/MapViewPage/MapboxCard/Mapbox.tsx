@@ -25,6 +25,7 @@ import Pin from './pin';
 
 import CITIES from './cities.json';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import {GarlicEventDetails} from "@app/components/apps/eventsFeed/GarlicEventDetails";
 
 const TOKEN = process.env.REACT_APP_MAPBOX_API_TOKEN; // Set your mapbox token here
 
@@ -132,7 +133,7 @@ export default function Mapbox() {
         mapboxAccessToken={TOKEN}
         attributionControl={false}
       >
-        <GeocoderControl mapboxAccessToken={TOKEN ? TOKEN : ''} position="top-left" placeholder="Type where to go..." />
+        <GeocoderControl mapboxAccessToken={TOKEN ? TOKEN : ''} position="top-left" placeholder="Enter your postal code or town" />
         <GeolocateControl position="top-left" />
         <FullscreenControl position="top-left" />
         <NavigationControl position="top-left" />
@@ -149,27 +150,17 @@ export default function Mapbox() {
               setPopupInfo(null);
               dispatch(setSearchedItem({}));
             }}
-            maxWidth="400px"
+            maxWidth="420px"
             style={{ fontFamily: FONT_FAMILY.main }}
           >
-            <Space direction="vertical">
-              <Title level={5} style={{ textAlign: 'center' }}>
-                {popupInfo.businessName}
-              </Title>
-              {garlickyFeature(popupInfo.garlickyFeature)}
-              {popupInfo.businessHours}
-              {popupInfo.typeOfParticipant}
-              {popupInfo.date}
-              {popupInfo.address}
-              {popupInfo.city + ',' + popupInfo.postalCode}
-              {popupInfo.tel && 'Tel: ' + popupInfo.tel}
-              {popupInfo.email && 'Email: ' + popupInfo.email}
-              {website(popupInfo.website, 'Website: ')}
-              {website(popupInfo.facebook, 'Facebook: ')}
-              {website(popupInfo.insta, 'Instagram: ')}
-              {website(popupInfo.twitter, 'Twitter: ')}
-              {popupInfo.credit}
-            </Space>
+              <div
+                  style={{
+                      maxHeight: 300,
+                      overflowY: "auto",
+                  }}
+              >
+                  <GarlicEventDetails garlicEvent={popupInfo}/>
+              </div>
             {theme === 'dark' ? (
               <style>
                 {`

@@ -10,7 +10,12 @@ export const NFTCardHeader: React.FC<PropsWithChildren<NFTCardHeaderProps>> = ({
   return (
     <S.WrapperRow justify="space-between">
       <BaseCol>
-        <S.Title level={5}>{title}</S.Title>
+        <S.Title
+            level={5}
+            style={{
+                color: "#008F3F",
+            }}
+        >{title}</S.Title>
       </BaseCol>
 
       {children && <BaseCol>{children}</BaseCol>}

@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { BaseFeed } from '@app/components/common/BaseFeed/BaseFeed';
 import { NotFound } from '@app/components/common/NotFound/NotFound';
 import { ListViewItem } from '@app/pages/GarlicWeekPages/ListViewPage/ListViewFeed/ListViewItem/ListViewItem';
-import { GarlicEvents } from '@app/api/events.api';
+import {GarlicEvents, GetSortFunction, SortBy} from '@app/api/events.api';
 import * as S from './ListViewFeed.styles';
 import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
 import { Space } from 'antd';
@@ -11,6 +11,7 @@ import { useAppSelector } from '@app/hooks/reduxHooks';
 import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
 import { setSearchedItem } from '@app/store/slices/filterSlice';
 import { useDispatch } from 'react-redux';
+import {GarlicEventDetails} from "@app/components/apps/eventsFeed/GarlicEventDetails";
 
 const { Title, Text, Link } = BaseTypography;
 
@@ -45,44 +46,6 @@ export const ListViewFeed: React.FC<ListViewFeedProps> = ({ activity, hasMore, n
     // if (selectedItem.businessName) setOverlayOpen(false);
   }, [selectedItem, setDetailModal]);
 
-  const website = (data = '', type = '') =>
-    data && data !== 'none' && data != 'N/a' ? (
-      <Text>
-        {type}
-        <Link href={`https://${data}`} target="_blank">
-          {data}
-        </Link>
-      </Text>
-    ) : null;
-
-  const garlickyFeature = (garlickyFeature: string | undefined) =>
-    garlickyFeature ? (
-      <Text style={{ color: 'inherit' }}>
-        <span style={{ fontWeight: 'bold' }}>Garlicky Feature: </span>
-        {garlickyFeature}
-      </Text>
-    ) : null;
-
-  const details = detailModal ? (
-    <Space direction="vertical">
-      <Title level={5} style={{ textAlign: 'center' }}>
-        {detailModal.businessName}
-      </Title>
-      {garlickyFeature(detailModal.garlickyFeature)}
-      {detailModal.businessHours}
-      {detailModal.typeOfParticipant}
-      {detailModal.date}
-      {detailModal.address}
-      {detailModal.city + ',' + detailModal.postalCode}
-      {detailModal.tel && 'Tel: ' + detailModal.tel}
-      {detailModal.email && 'Email: ' + detailModal.email}
-      {website(detailModal.website, 'Website: ')}
-      {website(detailModal.facebook, 'Facebook: ')}
-      {website(detailModal.insta, 'Instagram: ')}
-      {website(detailModal.twitter, 'Twitter: ')}
-      {detailModal.credit}
-    </Space>
-  ) : null;
 
   useEffect(() => {
     if (activity.length < 4) {
@@ -90,6 +53,7 @@ export const ListViewFeed: React.FC<ListViewFeedProps> = ({ activity, hasMore, n
     }
   }, [activity]);
 
+  const modal = detailModal ? (<GarlicEventDetails garlicEvent={detailModal}/>) : null;
   return (
     <>
       {activityItems.length > 0 ? (
@@ -110,7 +74,7 @@ export const ListViewFeed: React.FC<ListViewFeedProps> = ({ activity, hasMore, n
           }}
           footer={null}
         >
-          {details}
+          {modal}
         </BaseModal>
       )}
     </>

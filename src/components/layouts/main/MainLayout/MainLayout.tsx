@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { Header } from '../../../header/Header';
-import MainSider from '../sider/MainSider/MainSider';
+import React, {useEffect, useState} from 'react';
+import {Header} from '../../../header/Header';
 import MainContent from '../MainContent/MainContent';
-import { MainHeader } from '../MainHeader/MainHeader';
+import {MainHeader} from '../MainHeader/MainHeader';
 import * as S from './MainLayout.styles';
 import * as L from '@app/pages/GarlicWeekPages/ListViewPage/ListView.styles';
-import { Outlet, useLocation } from 'react-router-dom';
-import { MEDICAL_DASHBOARD_PATH, NFT_DASHBOARD_PATH } from '@app/components/router/AppRouter';
-import { References } from '@app/components/common/References/References';
+import {Outlet, useLocation} from 'react-router-dom';
+import {MEDICAL_DASHBOARD_PATH, NFT_DASHBOARD_PATH} from '@app/components/router/AppRouter';
+import {References} from '@app/components/common/References/References';
 
-import { ListViewHeader } from '@app/pages/GarlicWeekPages/ListViewPage/ListViewHeader/ListViewHeader';
-import { ListViewFeed } from '@app/pages/GarlicWeekPages/ListViewPage/ListViewFeed/ListViewFeed';
-import { ListViewFilter } from '@app/pages/GarlicWeekPages/ListViewPage/ListViewFilters/ListViewFilter';
-import { useResponsive } from '@app/hooks/useResponsive';
-import { getEvents, GarlicEvents } from '@app/api/events.api';
-import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
-import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
-import { changeEvents, setCityFilter } from '@app/store/slices/filterSlice';
-import { useDispatch } from 'react-redux';
+import {ListViewHeader} from '@app/pages/GarlicWeekPages/ListViewPage/ListViewHeader/ListViewHeader';
+import {ListViewFilter} from '@app/pages/GarlicWeekPages/ListViewPage/ListViewFilters/ListViewFilter';
+import {useResponsive} from '@app/hooks/useResponsive';
+import {GarlicEvents, getEvents, GetSortFunction, SortBy} from '@app/api/events.api';
+import {BaseRow} from '@app/components/common/BaseRow/BaseRow';
+import {BaseCol} from '@app/components/common/BaseCol/BaseCol';
+import {changeEvents, setCityFilter} from '@app/store/slices/filterSlice';
+import {useDispatch} from 'react-redux';
 
 export interface ListViewFilterState {
   category: string[];
   city: string[];
+  sort: SortBy,
 }
 
 const MainLayout: React.FC = () => {
@@ -40,11 +39,13 @@ const MainLayout: React.FC = () => {
   const [activity, setActivity] = useState<GarlicEvents[]>([]);
   const [firstFilteredActivity, setFirstFilteredActivity] = useState<GarlicEvents[]>([]);
   const [secondFilteredActivity, setSecondFilteredActivity] = useState<GarlicEvents[]>([]);
+  const [thirdFilteredActivity, setThirdFilteredActivity] = useState<GarlicEvents[]>([]);
   const [hasMore] = useState(true);
 
   const [filters, setFilters] = useState<ListViewFilterState>({
     category: [],
     city: [],
+    sort: SortBy.ALPHABETIC,
   });
 
   useEffect(() => {
@@ -52,6 +53,7 @@ const MainLayout: React.FC = () => {
       setActivity(res);
       setFirstFilteredActivity(res);
       setSecondFilteredActivity(res);
+      setThirdFilteredActivity(res);
     });
   }, []);
 
@@ -69,7 +71,7 @@ const MainLayout: React.FC = () => {
     } else setFirstFilteredActivity(activity);
   }, [filters.category, activity]);
 
-  useEffect(() => {
+  useEffect(() => {https://drive.google.com/file/d/1aWdtAg8VzE4nW2rv2R3SFGx9gRER-Yf-/view?usp=drive_link
     if (filters.city.length > 0) {
       setSecondFilteredActivity(
         firstFilteredActivity.filter((item) => filters.city.some((filter) => filter === item.city)),
@@ -77,7 +79,13 @@ const MainLayout: React.FC = () => {
     } else setSecondFilteredActivity(firstFilteredActivity);
   }, [filters.city, firstFilteredActivity]);
 
-  dispatch(changeEvents(secondFilteredActivity));
+  useEffect(() => {
+    setThirdFilteredActivity(
+        secondFilteredActivity.slice().sort(GetSortFunction(filters.sort)),
+    );
+  }, [filters.sort, secondFilteredActivity]);
+
+  dispatch(changeEvents(thirdFilteredActivity));
 
   return (
     <S.LayoutMaster>
@@ -95,7 +103,7 @@ const MainLayout: React.FC = () => {
 
             <BaseCol xs={24} sm={24} md={18} xl={18}>
               <Outlet />
-              {/* <ListViewFeed activity={filteredActivity} hasMore={hasMore} next={next} /> */}
+               {/*<ListViewFeed activity={filteredActivity} hasMore={hasMore} next={next} />*/}
             </BaseCol>
 
             {!mobileOnly && (

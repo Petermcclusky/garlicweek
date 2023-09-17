@@ -22,10 +22,18 @@ export const ListViewItem: React.FC<ListViewItemProps> = ({ activity, onClick })
     [activity.category],
   );
   const garlickyFeatureText = activity.garlickyFeature ? (
-    <>
+    <S.Text>
       <span style={{ fontWeight: 'bold' }}>Garlicky Feature: </span>
       {activity.garlickyFeature}
-    </>
+    </S.Text>
+  ) : null;
+  const garlicSpotlightText = activity.garlickySpotlight ? (
+    <S.Text>
+      <span style={{ fontWeight: 'bold' }}>Garlicky Spotlight: </span>
+      {activity.garlickySpotlight}
+
+        { activity.activityDate && activity.activityDate.length > 0 ? `(${activity.activityDate})` : ""}
+    </S.Text>
   ) : null;
 
   return (
@@ -38,21 +46,47 @@ export const ListViewItem: React.FC<ListViewItemProps> = ({ activity, onClick })
         <S.InfoWrapper>
           <S.InfoHeaderWrapper>
             <S.TitleWrapper>
-              <S.Title level={5}>{activity.businessName}</S.Title>
+              <div
+                  style={{
+                      display: "flex",
+                  }}
+              >
+                  { activity.logoUrl && activity.logoUrl.length > 0 &&
+                      <div
+                          style={{
+                              width: 32,
+                              height: 32,
+                              marginRight: 8,
+                              backgroundImage: `url("${activity.logoUrl}")`,
+                              backgroundSize: "100%",
+                              backgroundRepeat: "no-repeat",
+                              display: "inline-block",
+                          }}
+                      ></div>
+                  }
+                <S.Title level={5}>{activity.businessName}</S.Title>
+                { activity.city && activity.city.length > 0 &&
+                  <S.Text>&nbsp;- {activity.city}</S.Text>
+                }
+              </div>
 
               {/* <S.IconWrapper>{currentActivity?.icon}</S.IconWrapper> */}
             </S.TitleWrapper>
 
-            <S.Text>{currentActivity?.title}</S.Text>
-            <S.Text>{garlickyFeatureText}</S.Text>
+            { currentActivity &&
+                <S.Text>{currentActivity?.title}</S.Text>
+            }
+            {garlickyFeatureText}
+            {garlicSpotlightText}
           </S.InfoHeaderWrapper>
-
-          <S.InfoBottomWrapper>
-            <S.DateText>
-              {/* {Dates.getDate(date).format('lll')} */}
-              {activity.date}
-            </S.DateText>
-          </S.InfoBottomWrapper>
+            { activity.businessHours && activity.businessHours.length > 0 &&
+                <S.InfoBottomWrapper>
+                  <S.DateText>
+                    Business hour:<br/>
+                    {activity.businessHours}
+                  </S.DateText>
+                </S.InfoBottomWrapper>
+            }
         </S.InfoWrapper>
       </S.Wrapper>
     </S.ActivityCard>

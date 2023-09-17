@@ -8,6 +8,8 @@ import * as S from './ListViewStatusFilter.styles';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import { useAppSelector } from '@app/hooks/reduxHooks';
+import {Select} from "antd";
+import {SortBy} from "@app/api/events.api";
 
 interface ListViewStatusFilterProps {
   filters: ListViewFilterState;
@@ -32,6 +34,28 @@ export const ListViewStatusFilter: React.FC<ListViewStatusFilterProps> = ({ filt
   return (
     <>
       <BaseRow gutter={[20, 20]}>
+        <BaseCol span={24}>
+          <Title>{'Sort'}</Title>
+        </BaseCol>
+        <BaseCol span={24}>
+          <Select
+              placeholder="Sort"
+              defaultValue={{ value: SortBy.ALPHABETIC, label: 'Business A-Z' }}
+              onChange={(value, option) => {
+                  const v = value as unknown as SortBy;
+                  setFilters((prev) => ({ ...prev, sort: v})); // returns the enum not whats typed
+              }}
+              style={{ width: '100%' }}
+              options={[
+                { value: SortBy.ALPHABETIC, label: 'Business A-Z' },
+                { value: SortBy.ALPHABETIC_REVERSE, label: 'Business Z-A' },
+                { value: SortBy.TOWN, label: 'Town A-Z' },
+                { value: SortBy.TOWN_REVERSE, label: 'Town Z-A' },
+              ]}
+          />
+        </BaseCol>
+      </BaseRow>
+      <BaseRow gutter={[20, 20]} style={{ marginTop: '20px' }}>
         <BaseCol span={24}>
           <Title>{'Category'}</Title>
         </BaseCol>
@@ -67,7 +91,6 @@ export const ListViewStatusFilter: React.FC<ListViewStatusFilterProps> = ({ filt
             // defaultValue={['Toronto', 'Ontario']}
             onChange={(selectedValues) => {
               setFilters((prev) => ({ ...prev, city: selectedValues as unknown as string[] }));
-              console.log(selectedValues);
             }}
           >
             {citiesOption}

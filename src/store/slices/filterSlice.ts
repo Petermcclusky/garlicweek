@@ -1,29 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {EmptyGarlicEvents, SortBy} from "@app/api/events.api";
 
 const initialState = {
-  item: {
-    _id: '',
-    category: '',
-    typeOfParticipant: '',
-    garlickyFeature: '',
-    address: '',
-    date: '',
-    city: '',
-    postalCode: '',
-    email: '',
-    website: '',
-    insta: '',
-    hours: '',
-    streetAddress2: '',
-    tel: '',
-    facebook: '',
-    twitter: '',
-    otherSocialMedia: '',
-    details: '',
-    businessName: '',
-    restaurant: '',
-    coordinate: [],
-  },
+  item: EmptyGarlicEvents,
   filter: {
     category: [],
     city: [],

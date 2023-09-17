@@ -1,10 +1,10 @@
-export type CategoryType =
+export type CategoryType = //todo make changing these easier
   | 'Farm'
   | "Farmers' Market"
-  | 'Food & Beverage'
+  | 'Garlicky Food & Beverage'
   | 'Garlic Spotlight'
   | 'Community Organization'
-  | 'Independent Grocer';
+  | 'Independent Retail';
 
 export interface Category {
   name: CategoryType;
@@ -21,8 +21,8 @@ export const categoriesList: Category[] = [
     title: "Farmers' Market",
   },
   {
-    name: 'Food & Beverage',
-    title: 'Food & Beverage',
+    name: 'Garlicky Food & Beverage',
+    title: 'Garlicky Food & Beverage',
   },
   {
     name: 'Garlic Spotlight',
@@ -33,7 +33,7 @@ export const categoriesList: Category[] = [
     title: 'Community Organization',
   },
   {
-    name: 'Independent Grocer',
-    title: 'Independent Grocer',
+    name: 'Independent Retail',
+    title: 'Independent Retail',
   },
 ];

@@ -16,27 +16,24 @@ const pinStyle = {
 
 function Pin({ title = <></>, category = '' }) {
   let pic = 'pin2';
-  let picon = faStore;
   switch (category) {
     case 'Farm':
-      picon = faStore;
-      pic = 'pin2';
+      pic = 'pin4';
       break;
     case 'Garlicky Food & Beverage':
-      picon = faUtensils;
       pic = 'pin3';
       break;
     case "Farmers' Market":
-      picon = faWheatAlt;
       pic = 'pin4';
       break;
     case 'Independent Retail':
-      picon = faCartShopping;
       pic = 'pin5';
       break;
     case 'Garlic Spotlight':
-      picon = faPersonChalkboard;
       pic = 'pin6';
+      break;
+    case 'Community Organization':
+      pic = 'pin2';
       break;
     default:
       break;

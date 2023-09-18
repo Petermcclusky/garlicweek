@@ -1,7 +1,15 @@
 /* eslint-disable prettier/prettier */
 import * as React from 'react';
-import { useState, useMemo, useEffect } from 'react';
-import Map, { Marker, Popup, NavigationControl, FullscreenControl, ScaleControl, GeolocateControl } from 'react-map-gl';
+import {useState, useMemo, useEffect, useRef} from 'react';
+import Map, {
+    Marker,
+    Popup,
+    NavigationControl,
+    FullscreenControl,
+    ScaleControl,
+    GeolocateControl,
+    MapRef
+} from 'react-map-gl';
 import { getEvents, GarlicEvents } from '@app/api/events.api';
 import MapboxClient from '@mapbox/mapbox-sdk/lib/classes/mapi-client';
 import GeocodingService, { GeocodeFeature, GeocodeRequest } from '@mapbox/mapbox-sdk/services/geocoding';
@@ -54,6 +62,8 @@ export default function Mapbox() {
   });
   const geocodingClient = GeocodingService(baseClient);
   const events: GarlicEvents[] = useAppSelector((state) => state.filter.filteredEvents);
+  const mapRef = useRef<MapRef>(null);
+
   const garlickyFeature = (garlickyFeature: string | undefined) =>
     garlickyFeature && garlickyFeature.length > 0? (
       <Text style={{ color: 'inherit', fontSize: '13px' }}>
@@ -86,6 +96,12 @@ export default function Mapbox() {
           onClick={(e) => {
             // If we let the click event propagates to the map, it will immediately close the popup
             // with `closeOnClick: true`
+            if (mapRef.current && city.coordinate) {
+                mapRef.current?.panTo({
+                    lat: city.coordinate[1],
+                    lng: city.coordinate[0],
+                })
+            }
             e.originalEvent.stopPropagation();
             setPopupInfo(city);
           }}
@@ -125,7 +141,7 @@ export default function Mapbox() {
   const StyledPopup = styled(Popup)`
     opacity: 0.5;
   `;
-  return (
+    return (
     <>
       <Map
         initialViewState={{
@@ -140,6 +156,7 @@ export default function Mapbox() {
         // mapStyle="mapbox://styles/mapbox/dark-v9"
         mapboxAccessToken={TOKEN}
         attributionControl={false}
+        ref={mapRef}
       >
         <GeocoderControl mapboxAccessToken={TOKEN ? TOKEN : ''} position="top-left" placeholder="Enter your postal code or town" />
         <GeolocateControl position="top-left" />

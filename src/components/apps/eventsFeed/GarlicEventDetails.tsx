@@ -15,8 +15,8 @@ const { Title, Text, Link } = BaseTypography;
 
 export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
 
-    const BreakLine = (
-        <div
+    function BreakLine(): JSX.Element {
+        return (<div
             style={{
                 backgroundColor: "black",
                 height: 1,
@@ -24,7 +24,23 @@ export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
                 marginBottom: 24,
             }}
         ></div>
-    )
+        )
+    }
+    const TextWithBoldHeader = function (headerText: string, text?: string, lineBreakAfterHeader: boolean = false): JSX.Element| null {
+        if (text && text.length > 0) {
+            return (
+                <Text style={{color: 'inherit'}}>
+                    <span style={{fontWeight: 'bold'}}>{headerText} </span>
+                    {lineBreakAfterHeader &&
+                        <br/>
+                    }
+                    {text}
+                </Text>
+            );
+        }
+
+        return null;
+    }
     const website = (data = '', type = '') =>
         data && data !== 'none' && data != 'N/a' ? (
             <Text>
@@ -39,16 +55,9 @@ export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
     if (garlicEvent?.garlickySpotlight && garlicEvent.garlickySpotlight.length > 0) {
         garlicSpotlightSection = (
             <>
-                <Text style={{color: 'inherit'}}>
-                    <span style={{fontWeight: 'bold'}}>Garlic Spotlight: </span>
-                    {garlicEvent.garlickySpotlight}
-                </Text>
-                {garlicEvent.activityDate && garlicEvent.activityDate.length > 0 &&
-                <Text style={{color: 'inherit'}}>
-                    <span style={{fontWeight: 'bold'}}>Garlic Spotlight Date/Hours: </span>
-                    {garlicEvent.activityDate}
-                </Text>}
-                {BreakLine}
+                {TextWithBoldHeader("Garlic Spotlight:", garlicEvent.garlickySpotlight)}
+                {TextWithBoldHeader("Garlic Spotlight Date/Hours:", garlicEvent.activityDate)}
+                <BreakLine/>
             </>
         );
     }
@@ -63,15 +72,8 @@ export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
                         {garlicEvent.participationDetails}
                     </div>
                 }
-
-
-                {(garlicEvent?.chef && garlicEvent.chef.length > 0) &&
-                    <Text>
-                        <span style={{ fontWeight: 'bold' }}>Garlic Supplied by: </span>
-                        {garlicEvent.chef}
-                    </Text>
-                }
-                {BreakLine}
+                {TextWithBoldHeader("Garlic Supplied by:", garlicEvent.chef)}
+                <BreakLine/>
             </div>
         )
     }
@@ -84,23 +86,17 @@ export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
                     <Text>
                         <span style={{ fontWeight: 'bold' }}>Contact:</span>
                     </Text>
-                    {(garlicEvent?.tel && garlicEvent.tel.length > 0) &&
-                        <Text>
-                            <br/>
-                            <span style={{ fontWeight: 'bold' }}>Tel: </span>
-                            {garlicEvent.tel}
-                        </Text>
-                    }
-                    {(garlicEvent?.email && garlicEvent.email.length > 0) &&
-                        <Text>
-                            <br/>
-                            <span style={{ fontWeight: 'bold' }}>Email: </span>
-                            {garlicEvent.email}
-                        </Text>
-                    }
+
+                    {TextWithBoldHeader("Tel:", garlicEvent.tel)}
+                    {TextWithBoldHeader("Email:", garlicEvent.email)}
                 </div>
             );
     }
+
+    let cuisineTypeSection: JSX.Element| null = TextWithBoldHeader("Cuisine:", garlicEvent.cuisineType);
+    let dietaryOptionsSection: JSX.Element| null = TextWithBoldHeader("Dietary Options:", garlicEvent.dietaryOptions, true);
+    let amenitiesSection: JSX.Element| null = TextWithBoldHeader("Amenities:", garlicEvent.amenities, true);
+    let accessibilitySection: JSX.Element| null = TextWithBoldHeader("Accessibility:", garlicEvent.accessibility);
     return (
         <Space direction="vertical">
             <div
@@ -161,7 +157,14 @@ export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
                 </Text>
             }
             {contactCard}
-            {BreakLine}
+            <BreakLine/>
+            {cuisineTypeSection}
+            {dietaryOptionsSection}
+            {amenitiesSection}
+            {accessibilitySection}
+            {(cuisineTypeSection || dietaryOptionsSection || amenitiesSection || accessibilitySection) &&
+                <BreakLine/>
+            }
             {website(garlicEvent.website, 'Website: ')}
             {website(garlicEvent.facebook, 'Facebook: ')}
             {website(garlicEvent.insta, 'Instagram: ')}

@@ -35,6 +35,10 @@ export interface GarlicEvents {
   logoUrl?: string;
   chef?: string;
   lastDayOfSeason?: string;
+  cuisineType?: string;
+  dietaryOptions?: string;
+  amenities?: string;
+  accessibility?: string;
 }
 export const EmptyGarlicEvents = {
   _id: "",
@@ -62,6 +66,10 @@ export const EmptyGarlicEvents = {
   coordinate: [],
   chef: '',
   lastDayOfSeason: '',
+  cuisineType: "",
+  dietaryOptions: "",
+  amenities: "",
+  accessibility: "",
 }
 
 export const getEvents = (): Promise<GarlicEvents[]> => {
@@ -136,6 +144,10 @@ async function ProcessCSV(results: ParseResult<Record<string, string>>, resolve:
       logoUrl: row[53],
       chef: row[40],
       lastDayOfSeason: row[52],
+      cuisineType: row[38],
+      dietaryOptions: row[37],
+      amenities: row[39],
+      accessibility: row[11],
     };
     events.push(event);
   }

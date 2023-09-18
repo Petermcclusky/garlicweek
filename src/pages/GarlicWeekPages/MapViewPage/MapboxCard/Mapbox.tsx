@@ -53,14 +53,19 @@ export default function Mapbox() {
     accessToken: TOKEN ? TOKEN : '',
   });
   const geocodingClient = GeocodingService(baseClient);
-  console.log(geocodingClient);
   const events: GarlicEvents[] = useAppSelector((state) => state.filter.filteredEvents);
-  console.log(events);
   const garlickyFeature = (garlickyFeature: string | undefined) =>
-    garlickyFeature ? (
+    garlickyFeature && garlickyFeature.length > 0? (
       <Text style={{ color: 'inherit', fontSize: '13px' }}>
         <span style={{ fontWeight: 'bold' }}>Garlicky Feature: </span>
         {garlickyFeature}
+      </Text>
+    ) : null;
+  const garlicSpotLight = (garlicSpotLight: string | null | undefined) =>
+      garlicSpotLight && garlicSpotLight.length > 0 ? (
+      <Text style={{ color: 'inherit', fontSize: '13px' }}>
+        <span style={{ fontWeight: 'bold' }}>Garlic Spotlight: </span>
+        {garlicSpotLight}
       </Text>
     ) : null;
 
@@ -91,9 +96,12 @@ export default function Mapbox() {
                 <Space direction="vertical" style={{ color: '#f8fbff' }}>
                   <Title level={5} style={{ textAlign: 'center', color: 'inherit' }}>
                     {city.businessName}
+                      {city.city && city.city.length > 0 &&
+                        ` - ${city.city}`
+                      }
                   </Title>
                   {garlickyFeature(city.garlickyFeature)}
-                  {city.address}
+                  {garlicSpotLight(city.garlickySpotlight)}
                 </Space>
               }
               category={city.category}

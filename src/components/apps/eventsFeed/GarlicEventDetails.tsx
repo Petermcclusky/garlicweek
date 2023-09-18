@@ -134,6 +134,8 @@ export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
                 <Title level={5} style={{
                     textAlign: 'center',
                     paddingTop: 8,
+                    paddingLeft: 48,
+                    paddingRight: 48,
                 }}>
                     {garlicEvent.businessName}, {garlicEvent.city}
                 </Title>

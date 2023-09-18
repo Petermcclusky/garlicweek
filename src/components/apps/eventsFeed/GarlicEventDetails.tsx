@@ -26,7 +26,7 @@ export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
         ></div>
         )
     }
-    const TextWithBoldHeader = function (headerText: string, text?: string, lineBreakAfterHeader: boolean = false): JSX.Element| null {
+    const TextWithBoldHeader = function (headerText: string, text?: string, lineBreakAfterHeader = false): JSX.Element| null {
         if (text && text.length > 0) {
             return (
                 <Text style={{color: 'inherit'}}>
@@ -93,10 +93,10 @@ export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
             );
     }
 
-    let cuisineTypeSection: JSX.Element| null = TextWithBoldHeader("Cuisine:", garlicEvent.cuisineType);
-    let dietaryOptionsSection: JSX.Element| null = TextWithBoldHeader("Dietary Options:", garlicEvent.dietaryOptions, true);
-    let amenitiesSection: JSX.Element| null = TextWithBoldHeader("Amenities:", garlicEvent.amenities, true);
-    let accessibilitySection: JSX.Element| null = TextWithBoldHeader("Accessibility:", garlicEvent.accessibility);
+    const cuisineTypeSection: JSX.Element| null = TextWithBoldHeader("Cuisine:", garlicEvent.cuisineType);
+    const dietaryOptionsSection: JSX.Element| null = TextWithBoldHeader("Dietary Options:", garlicEvent.dietaryOptions, true);
+    const amenitiesSection: JSX.Element| null = TextWithBoldHeader("Amenities:", garlicEvent.amenities, true);
+    const accessibilitySection: JSX.Element| null = TextWithBoldHeader("Accessibility:", garlicEvent.accessibility);
     return (
         <Space direction="vertical">
             <div
@@ -140,22 +140,9 @@ export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
             </div>
             {participationDetailsSection}
             {garlicSpotlightSection}
-            <Text>
-                <span style={{ fontWeight: 'bold' }}>Address: </span>
-                {garlicEvent.address + ", " + garlicEvent.city + ', Ontario, Canada, ' + garlicEvent.postalCode}
-            </Text>
-            {garlicEvent.businessHours && garlicEvent.businessHours.length > 0 &&
-                <Text>
-                    <span style={{ fontWeight: 'bold' }}>Business Hours: </span>
-                    {garlicEvent.businessHours}
-                </Text>
-            }
-            {garlicEvent.lastDayOfSeason && garlicEvent.lastDayOfSeason.length > 0 &&
-                <Text>
-                    <span style={{ fontWeight: 'bold' }}>Last Day of Season: </span>
-                    {garlicEvent.lastDayOfSeason}
-                </Text>
-            }
+            {TextWithBoldHeader("Address:", garlicEvent.address + ", " + garlicEvent.city + ', Ontario, Canada, ' + garlicEvent.postalCode)}
+            {TextWithBoldHeader("Business Hours:", garlicEvent.lastDayOfSeason)}
+            {TextWithBoldHeader("Last Day of Season:", garlicEvent.businessHours)}
             {contactCard}
             <BreakLine/>
             {cuisineTypeSection}

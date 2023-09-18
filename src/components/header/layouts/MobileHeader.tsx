@@ -10,6 +10,7 @@ import { MapViewButton } from '../components/MapViewButton';
 import { ListViewButton } from '../components/ListViewButton';
 import { CalendarViewButton } from '../components/CalendarViewButton';
 import { JoinMobileButton } from '../components/JoinMobileButton';
+import {useAppSelector} from "@app/hooks/reduxHooks";
 
 interface MobileHeaderProps {
   toggleSider: () => void;
@@ -17,13 +18,25 @@ interface MobileHeaderProps {
 }
 
 export const MobileHeader: React.FC<MobileHeaderProps> = ({ toggleSider, isSiderOpened }) => {
-  return (
-    <BaseRow justify="space-between" align="middle">
-      <BaseCol>
+    const theme = useAppSelector((state) => state.theme.theme);
+
+    return (
+    <BaseRow align="middle">
+        <BaseCol>
+            {theme === 'light' ? (
+                <img src="/logo-light.png" style={{ height: '60px' }} />
+            ) : (
+                <img src="/logo-dark.png" style={{ height: '60px' }} />
+            )}
+        </BaseCol>
+      <BaseCol
+      >
         <JoinMobileButton />
       </BaseCol>
-
-      <BaseCol>
+      <BaseCol
+          style = {{
+              marginLeft: "auto",
+          }}>
         <BaseRow align="middle">
           <BaseCol>
             <ListViewButton />
@@ -36,7 +49,10 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ toggleSider, isSider
           {/*</BaseCol>*/}
         </BaseRow>
       </BaseCol>
-      <S.BurgerCol>
+      <S.BurgerCol
+      style = {{
+          marginLeft: "auto",
+      }}>
         <BaseCol>
           <SettingsDropdown />
         </BaseCol>

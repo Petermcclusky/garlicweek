@@ -1,20 +1,14 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { BaseFeed } from '@app/components/common/BaseFeed/BaseFeed';
-import { NotFound } from '@app/components/common/NotFound/NotFound';
-import { ListViewItem } from '@app/pages/GarlicWeekPages/ListViewPage/ListViewFeed/ListViewItem/ListViewItem';
 import {GarlicEvents, GetSortFunction, SortBy} from '@app/api/events.api';
 import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
 import { Space } from 'antd';
-import { useAppSelector } from '@app/hooks/reduxHooks';
-import { BaseModal } from '@app/components/common/BaseModal/BaseModal';
-import { setSearchedItem } from '@app/store/slices/filterSlice';
-import { useDispatch } from 'react-redux';
 
 const { Title, Text, Link } = BaseTypography;
 
-export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
+export function GarlicEventDetails({garlicEvent, logoSize}: {garlicEvent: GarlicEvents, logoSize?: number}) {
 
+    // const actualLogoSize: number = 64
     function BreakLine(): JSX.Element {
         return (<div
             style={{
@@ -26,16 +20,21 @@ export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
         ></div>
         )
     }
-    const TextWithBoldHeader = function (headerText: string, text?: string, lineBreakAfterHeader = false): JSX.Element| null {
+    const TextWithBoldHeader = function (headerText: string, text?: string, lineBreakAfterHeader = false, lineBreakBefore = false): JSX.Element| null {
         if (text && text.length > 0) {
             return (
-                <Text style={{color: 'inherit'}}>
-                    <span style={{fontWeight: 'bold'}}>{headerText} </span>
-                    {lineBreakAfterHeader &&
+                <>
+                    {lineBreakBefore &&
                         <br/>
                     }
-                    {text}
-                </Text>
+                    <Text style={{color: 'inherit'}}>
+                        <span style={{fontWeight: 'bold'}}>{headerText} </span>
+                        {lineBreakAfterHeader &&
+                            <br/>
+                        }
+                        {text}
+                    </Text>
+                </>
             );
         }
 
@@ -51,6 +50,22 @@ export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
             </Text>
         ) : null;
 
+    let participationDetailsSection: JSX.Element| null = null;
+    if ((garlicEvent?.garlickyFeature && garlicEvent.garlickyFeature.length > 0) ||
+        (garlicEvent?.chef && garlicEvent.chef.length > 0)) {
+        participationDetailsSection = (
+            <div >
+                {(garlicEvent?.garlickyFeature && garlicEvent.garlickyFeature.length > 0) &&
+                    <div>
+                        {garlicEvent.garlickyFeature}
+                    </div>
+                }
+                {TextWithBoldHeader("Locally Grown Garlic Supplied By:", garlicEvent.chef)}
+                <BreakLine/>
+            </div>
+        )
+    }
+
     let garlicSpotlightSection: JSX.Element| null = null;
     if (garlicEvent?.garlickySpotlight && garlicEvent.garlickySpotlight.length > 0) {
         garlicSpotlightSection = (
@@ -62,22 +77,6 @@ export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
         );
     }
 
-    let participationDetailsSection: JSX.Element| null = null;
-    if ((garlicEvent?.participationDetails && garlicEvent.participationDetails.length > 0) ||
-        (garlicEvent?.chef && garlicEvent.chef.length > 0)) {
-        participationDetailsSection = (
-            <div >
-                {(garlicEvent?.participationDetails && garlicEvent.participationDetails.length > 0) &&
-                    <div>
-                        {garlicEvent.participationDetails}
-                    </div>
-                }
-                {TextWithBoldHeader("Garlic Supplied by:", garlicEvent.chef)}
-                <BreakLine/>
-            </div>
-        )
-    }
-
     let contactCard: JSX.Element| null = null;
     if ((garlicEvent?.tel && garlicEvent.tel.length > 0) ||
                 (garlicEvent?.email && garlicEvent.email.length > 0)) {
@@ -87,8 +86,8 @@ export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
                         <span style={{ fontWeight: 'bold' }}>Contact:</span>
                     </Text>
 
-                    {TextWithBoldHeader("Tel:", garlicEvent.tel)}
-                    {TextWithBoldHeader("Email:", garlicEvent.email)}
+                    {TextWithBoldHeader("Tel:", garlicEvent.tel, false, true)}
+                    {TextWithBoldHeader("Email:", garlicEvent.email, false, true)}
                 </div>
             );
     }
@@ -143,8 +142,8 @@ export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
             {participationDetailsSection}
             {garlicSpotlightSection}
             {TextWithBoldHeader("Address:", garlicEvent.address + ", " + garlicEvent.city + ', Ontario, Canada, ' + garlicEvent.postalCode)}
-            {TextWithBoldHeader("Business Hours:", garlicEvent.lastDayOfSeason)}
-            {TextWithBoldHeader("Last Day of Season:", garlicEvent.businessHours)}
+            {TextWithBoldHeader("Business hours:", garlicEvent.businessHours)}
+            {TextWithBoldHeader("Last Day of Season:", garlicEvent.lastDayOfSeason)}
             {contactCard}
             <BreakLine/>
             {cuisineTypeSection}
@@ -163,7 +162,7 @@ export function GarlicEventDetails({garlicEvent}: {garlicEvent: GarlicEvents}) {
                     style={{
                         textAlign: 'left',
                         color: "#008F3F",
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: "500",
                     }}
                 >

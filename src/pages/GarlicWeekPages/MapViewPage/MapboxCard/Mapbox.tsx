@@ -67,7 +67,6 @@ export default function Mapbox() {
   const garlickyFeature = (garlickyFeature: string | undefined) =>
     garlickyFeature && garlickyFeature.length > 0? (
       <Text style={{ color: 'inherit', fontSize: '13px' }}>
-        <span style={{ fontWeight: 'bold' }}>Garlicky Feature: </span>
         {garlickyFeature}
       </Text>
     ) : null;

@@ -23,7 +23,6 @@ export const ListViewItem: React.FC<ListViewItemProps> = ({ activity, onClick })
   );
   const garlickyFeatureText = activity.garlickyFeature ? (
     <S.Text>
-      <span style={{ fontWeight: 'bold' }}>Garlicky Feature: </span>
       {activity.garlickyFeature}
     </S.Text>
   ) : null;
@@ -32,7 +31,7 @@ export const ListViewItem: React.FC<ListViewItemProps> = ({ activity, onClick })
       <span style={{ fontWeight: 'bold' }}>Garlicky Spotlight: </span>
       {activity.garlickySpotlight}
 
-        { activity.activityDate && activity.activityDate.length > 0 ? `(${activity.activityDate})` : ""}
+        { activity.activityDate && activity.activityDate.length > 0 ? ` (${activity.activityDate})` : ""}
     </S.Text>
   ) : null;
 

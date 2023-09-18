@@ -131,7 +131,7 @@ async function ProcessCSV(results: ParseResult<Record<string, string>>, resolve:
       website: row[30],
       insta: row[32], //Flycreek_farm
       streetAddress2: '',
-      tel: row[23], // 6132461884
+      tel: row[28], // 6132461884 row 23 appears to be the older one
       facebook: row[31],
       twitter: row[33],
       otherSocialMedia: row[35],

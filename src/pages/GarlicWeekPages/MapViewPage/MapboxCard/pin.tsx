@@ -14,6 +14,15 @@ const pinStyle = {
   stroke: 'none',
 };
 
+/*
+  pin1.png:
+  pin2.png:
+  pin3.png:
+  pin4.png:
+  pin5.png:
+  pin6.png:
+
+ */
 function Pin({ title = <></>, category = '' }) {
   let pic = 'pin2';
   switch (category) {

@@ -21,12 +21,21 @@ export const ListViewItem: React.FC<ListViewItemProps> = ({ activity, onClick })
     () => categoriesList.find((dbStatus) => dbStatus.name === activity.category),
     [activity.category],
   );
-  const garlickyFeatureText = activity.garlickyFeature ? (
+
+  const chefText = activity.chef && activity.chef.length > 0 ? (
+      <S.Text>
+        <span style={{ fontWeight: 'bold' }}>Locally Grown Garlic Supplied By: </span>
+        {activity.chef}
+      </S.Text>
+  ) : null;
+
+  const garlickyFeatureText = activity.garlickyFeature && activity.garlickyFeature.length > 0 ? (
     <S.Text>
       {activity.garlickyFeature}
     </S.Text>
   ) : null;
-  const garlicSpotlightText = activity.garlickySpotlight ? (
+
+  const garlicSpotlightText = activity.garlickySpotlight && activity.garlickySpotlight.length > 0 ? (
     <S.Text>
       <span style={{ fontWeight: 'bold' }}>Garlicky Spotlight: </span>
       {activity.garlickySpotlight}
@@ -48,25 +57,27 @@ export const ListViewItem: React.FC<ListViewItemProps> = ({ activity, onClick })
               <div
                   style={{
                       display: "flex",
+                    alignItems: "center",
                   }}
               >
                   { activity.logoUrl && activity.logoUrl.length > 0 &&
                       <div
                           style={{
-                              width: 42,
-                              height: 42,
+                              width: 64,
+                              height: 64,
                               marginRight: 8,
                               backgroundImage: `url("${activity.logoUrl}")`,
                               backgroundSize: "100%",
                               backgroundRepeat: "no-repeat",
+                            backgroundPosition: "center",
                               display: "inline-block",
                           }}
                       ></div>
                   }
-                <S.Title level={5}>{activity.businessName}</S.Title>
-                { activity.city && activity.city.length > 0 &&
-                  <S.Text>&nbsp;- {activity.city}</S.Text>
-                }
+                  <S.Title level={5}>{activity.businessName}</S.Title>
+                  { activity.city && activity.city.length > 0 &&
+                      <S.Text>&nbsp;- {activity.city}</S.Text>
+                  }
               </div>
 
               {/* <S.IconWrapper>{currentActivity?.icon}</S.IconWrapper> */}
@@ -76,6 +87,7 @@ export const ListViewItem: React.FC<ListViewItemProps> = ({ activity, onClick })
                 <S.Text>{currentActivity?.title}</S.Text>
             }
             {garlickyFeatureText}
+            {chefText}
             {garlicSpotlightText}
           </S.InfoHeaderWrapper>
             { activity.businessHours && activity.businessHours.length > 0 &&

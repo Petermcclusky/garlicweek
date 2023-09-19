@@ -101,7 +101,6 @@ export function GarlicEventDetails({garlicEvent, logoSize}: {garlicEvent: Garlic
             <div
                 style={{
                     textAlign: 'center',
-                    paddingTop: 8,
                     color: "#008F3F",
                     fontWeight: "600",
                 }}
@@ -112,6 +111,7 @@ export function GarlicEventDetails({garlicEvent, logoSize}: {garlicEvent: Garlic
                 style={{
                     minHeight: actualLogoSize,
                     position: "relative",
+                    marginTop: 8,
                 }}
             >
 
@@ -132,7 +132,6 @@ export function GarlicEventDetails({garlicEvent, logoSize}: {garlicEvent: Garlic
                 }
                 <Title level={5} style={{
                     textAlign: 'center',
-                    paddingTop: 8,
                     paddingLeft: actualLogoSize,
                     paddingRight: actualLogoSize,
                 }}>

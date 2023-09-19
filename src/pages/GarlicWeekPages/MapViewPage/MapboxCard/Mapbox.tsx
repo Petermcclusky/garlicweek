@@ -51,7 +51,7 @@ export default function Mapbox() {
   const dispatch = useDispatch();
   const theme = useAppSelector((state) => state.theme.theme);
   const filter: Array<string> = useAppSelector((state) => state.filter.filter.category);
-  console.log(theme);
+
   // const [events, setEvents] = useState<GarlicEvents[]>();
   const [data, setData] = useState<GarlicEvents[]>([]);
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -61,9 +61,26 @@ export default function Mapbox() {
   const baseClient = new MapboxClient({
     accessToken: TOKEN ? TOKEN : '',
   });
-  const geocodingClient = GeocodingService(baseClient);
   const events: GarlicEvents[] = useAppSelector((state) => state.filter.filteredEvents);
   const mapRef = useRef<MapRef>(null);
+  const popUpRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (selectedItem._id) setPopupInfo(selectedItem);
+        // if (selectedItem.businessName) setOverlayOpen(false);
+        if (popUpRef.current != null) {
+            popUpRef.current.scrollTop = 0;
+        }
+    }, [selectedItem, setPopupInfo]);
+
+    useEffect(() => {
+        console.log("HI")
+        console.log(popUpRef.current)
+        if (popUpRef.current != null) {
+            popUpRef.current.scrollTop = 0;
+        }
+    }, [popupInfo]);
+
 
   const garlickyFeature = (garlickyFeature: string | undefined) =>
     garlickyFeature && garlickyFeature.length > 0? (
@@ -78,11 +95,6 @@ export default function Mapbox() {
         {garlicSpotLight}
       </Text>
     ) : null;
-
-  useEffect(() => {
-    if (selectedItem._id) setPopupInfo(selectedItem);
-    // if (selectedItem.businessName) setOverlayOpen(false);
-  }, [selectedItem, setPopupInfo]);
 
   // console.log(data);
   const pins = useMemo(
@@ -182,6 +194,7 @@ export default function Mapbox() {
                       maxHeight: popupMaxHeight,
                       overflowY: "auto",
                   }}
+                  ref={popUpRef}
               >
                   <GarlicEventDetails garlicEvent={popupInfo}/>
               </div>

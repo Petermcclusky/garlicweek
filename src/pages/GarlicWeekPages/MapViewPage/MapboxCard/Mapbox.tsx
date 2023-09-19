@@ -68,15 +68,14 @@ export default function Mapbox() {
     useEffect(() => {
         if (selectedItem._id) setPopupInfo(selectedItem);
         // if (selectedItem.businessName) setOverlayOpen(false);
-        if (popUpRef.current != null) {
-            popUpRef.current.scrollTop = 0;
-        }
     }, [selectedItem, setPopupInfo]);
 
     useEffect(() => {
-        if (popUpRef.current != null) {
-            popUpRef.current.scrollTop = 0;
-        }
+        setTimeout(() =>{
+            if (popUpRef.current != null) {
+                popUpRef.current.scrollTop = 0;
+            }
+        },0);
     }, [popupInfo]);
 
 
@@ -188,6 +187,7 @@ export default function Mapbox() {
             style={{ fontFamily: FONT_FAMILY.main }}
           >
               <div
+                  id={"TESTTEST"}
                   style={{
                       maxHeight: popupMaxHeight,
                       overflowY: "auto",

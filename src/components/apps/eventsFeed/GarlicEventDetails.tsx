@@ -52,7 +52,7 @@ export function GarlicEventDetails({garlicEvent, logoSize}: {garlicEvent: Garlic
 
     let participationDetailsSection: JSX.Element| null = null;
     if ((garlicEvent?.garlickyFeature && garlicEvent.garlickyFeature.length > 0) ||
-        (garlicEvent?.chef && garlicEvent.chef.length > 0)) {
+        (garlicEvent?.garlicSupplier && garlicEvent.garlicSupplier.length > 0)) {
         participationDetailsSection = (
             <div >
                 {(garlicEvent?.garlickyFeature && garlicEvent.garlickyFeature.length > 0) &&
@@ -60,7 +60,7 @@ export function GarlicEventDetails({garlicEvent, logoSize}: {garlicEvent: Garlic
                         {garlicEvent.garlickyFeature}
                     </div>
                 }
-                {TextWithBoldHeader("Locally Grown Garlic Supplied By:", garlicEvent.chef)}
+                {TextWithBoldHeader("Locally Grown Garlic Supplied By:", garlicEvent.garlicSupplier)}
                 <BreakLine/>
             </div>
         )

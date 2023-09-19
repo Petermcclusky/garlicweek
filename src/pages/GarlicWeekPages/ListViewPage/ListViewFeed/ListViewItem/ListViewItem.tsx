@@ -22,10 +22,10 @@ export const ListViewItem: React.FC<ListViewItemProps> = ({ activity, onClick })
     [activity.category],
   );
 
-  const chefText = activity.chef && activity.chef.length > 0 ? (
+  const garlicSupplierText = activity.garlicSupplier && activity.garlicSupplier.length > 0 ? (
       <S.Text>
         <span style={{ fontWeight: 'bold' }}>Locally Grown Garlic Supplied By: </span>
-        {activity.chef}
+        {activity.garlicSupplier}
       </S.Text>
   ) : null;
 
@@ -87,7 +87,7 @@ export const ListViewItem: React.FC<ListViewItemProps> = ({ activity, onClick })
                 <S.Text>{currentActivity?.title}</S.Text>
             }
             {garlickyFeatureText}
-            {chefText}
+            {garlicSupplierText}
             {garlicSpotlightText}
           </S.InfoHeaderWrapper>
             { activity.businessHours && activity.businessHours.length > 0 &&

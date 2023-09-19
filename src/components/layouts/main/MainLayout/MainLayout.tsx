@@ -24,10 +24,8 @@ export interface ListViewFilterState {
 
 const MainLayout: React.FC = () => {
   const dispatch = useDispatch();
-  const [isTwoColumnsLayout, setIsTwoColumnsLayout] = useState(true);
   const [siderCollapsed, setSiderCollapsed] = useState(true);
-  const { isDesktop, mobileOnly } = useResponsive();
-  const location = useLocation();
+  const {  mobileOnly } = useResponsive();
 
   const toggleSider = () => setSiderCollapsed(!siderCollapsed);
 
@@ -35,7 +33,6 @@ const MainLayout: React.FC = () => {
   const [firstFilteredActivity, setFirstFilteredActivity] = useState<GarlicEvents[]>([]);
   const [secondFilteredActivity, setSecondFilteredActivity] = useState<GarlicEvents[]>([]);
   const [thirdFilteredActivity, setThirdFilteredActivity] = useState<GarlicEvents[]>([]);
-  const [hasMore] = useState(true);
 
   const [filters, setFilters] = useState<ListViewFilterState>({
     category: [],
@@ -86,10 +83,10 @@ const MainLayout: React.FC = () => {
     <S.LayoutMaster>
       {/* <MainSider isCollapsed={siderCollapsed} setCollapsed={setSiderCollapsed} /> */}
       <S.LayoutMain>
-        <MainHeader isTwoColumnsLayout={isTwoColumnsLayout}>
-          <Header toggleSider={toggleSider} isSiderOpened={!siderCollapsed} isTwoColumnsLayout={isTwoColumnsLayout} />
+        <MainHeader isTwoColumnsLayout={false}>
+          <Header toggleSider={toggleSider} isSiderOpened={!siderCollapsed} isTwoColumnsLayout={false} />
         </MainHeader>
-        <MainContent id="main-content" $isTwoColumnsLayout={isTwoColumnsLayout}>
+        <MainContent id="main-content" $isTwoColumnsLayout={false}>
           <div>{/* <Outlet /> */}</div>
           <BaseRow gutter={[30, 0]}>
             <BaseCol span={24}>
@@ -107,7 +104,7 @@ const MainLayout: React.FC = () => {
               </L.FilterCol>
             )}
           </BaseRow>
-          {!isTwoColumnsLayout && <References />}
+          <References />
         </MainContent>
       </S.LayoutMain>
     </S.LayoutMaster>

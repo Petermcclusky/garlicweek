@@ -41,6 +41,7 @@ export interface GarlicEvents {
   dietaryOptions?: string;
   amenities?: string;
   accessibility?: string;
+  garlicSupplier?: string;
 }
 export const EmptyGarlicEvents = {
   _id: "",
@@ -72,6 +73,7 @@ export const EmptyGarlicEvents = {
   dietaryOptions: "",
   amenities: "",
   accessibility: "",
+  garlicSupplier: "",
 }
 
 export const getEvents = (): Promise<GarlicEvents[]> => {
@@ -152,6 +154,7 @@ async function ProcessCSV(results: ParseResult<Record<string, string>>, resolve:
       dietaryOptions: row[37],
       amenities: row[39],
       accessibility: row[11],
+      garlicSupplier: row[43]
     };
     events.push(event);
   }

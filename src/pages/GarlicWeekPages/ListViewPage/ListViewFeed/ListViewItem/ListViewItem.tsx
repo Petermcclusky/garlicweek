@@ -53,8 +53,8 @@ export const ListViewItem: React.FC<ListViewItemProps> = ({ activity, onClick })
                   { activity.logoUrl && activity.logoUrl.length > 0 &&
                       <div
                           style={{
-                              width: 32,
-                              height: 32,
+                              width: 42,
+                              height: 42,
                               marginRight: 8,
                               backgroundImage: `url("${activity.logoUrl}")`,
                               backgroundSize: "100%",

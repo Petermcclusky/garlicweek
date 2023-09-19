@@ -7,8 +7,8 @@ import { Space } from 'antd';
 const { Title, Text, Link } = BaseTypography;
 
 export function GarlicEventDetails({garlicEvent, logoSize}: {garlicEvent: GarlicEvents, logoSize?: number}) {
+    const actualLogoSize: number = logoSize ?? 72
 
-    // const actualLogoSize: number = 64
     function BreakLine(): JSX.Element {
         return (<div
             style={{
@@ -110,7 +110,7 @@ export function GarlicEventDetails({garlicEvent, logoSize}: {garlicEvent: Garlic
             </div>
             <div
                 style={{
-                    minHeight: 48,
+                    minHeight: actualLogoSize,
                     position: "relative",
                 }}
             >
@@ -118,8 +118,8 @@ export function GarlicEventDetails({garlicEvent, logoSize}: {garlicEvent: Garlic
                 { garlicEvent.logoUrl && garlicEvent.logoUrl.length > 0 &&
                     <div
                         style={{
-                            width: 48,
-                            height: 48,
+                            width: actualLogoSize,
+                            height: actualLogoSize,
                             marginRight: 8,
                             backgroundImage: `url("${garlicEvent.logoUrl}")`,
                             backgroundSize: "100%",
@@ -133,8 +133,8 @@ export function GarlicEventDetails({garlicEvent, logoSize}: {garlicEvent: Garlic
                 <Title level={5} style={{
                     textAlign: 'center',
                     paddingTop: 8,
-                    paddingLeft: 48,
-                    paddingRight: 48,
+                    paddingLeft: actualLogoSize,
+                    paddingRight: actualLogoSize,
                 }}>
                     {garlicEvent.businessName}, {garlicEvent.city}
                 </Title>

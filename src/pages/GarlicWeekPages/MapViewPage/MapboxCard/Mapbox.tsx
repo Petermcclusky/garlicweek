@@ -74,8 +74,6 @@ export default function Mapbox() {
     }, [selectedItem, setPopupInfo]);
 
     useEffect(() => {
-        console.log("HI")
-        console.log(popUpRef.current)
         if (popUpRef.current != null) {
             popUpRef.current.scrollTop = 0;
         }

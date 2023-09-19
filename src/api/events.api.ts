@@ -5,6 +5,8 @@ const spreadsheetUrl = "https://docs.google.com/spreadsheets/d/1AqsxVS_zoEuxVEDe
 
 let sharedEvent: Promise<GarlicEvents[]>| null = null;
 
+export let IsLoadingGarlicEvents = false; // so dumb
+
 export interface GarlicEvents {
   _id: string;
   category: string;
@@ -77,11 +79,13 @@ export const getEvents = (): Promise<GarlicEvents[]> => {
     return sharedEvent;
   }
 
+  IsLoadingGarlicEvents = true;
   sharedEvent = new Promise<GarlicEvents[]>((resolve, reject) => {
     Papa.parse(spreadsheetUrl, {
       download: true,
       header: false,
       complete: (results: ParseResult<Record<string, string>>) => {
+        IsLoadingGarlicEvents = false;
         ProcessCSV(results, resolve);
       }
     });

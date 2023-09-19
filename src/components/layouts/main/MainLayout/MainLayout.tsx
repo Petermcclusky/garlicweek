@@ -71,7 +71,7 @@ const MainLayout: React.FC = () => {
     } else setFirstFilteredActivity(activity);
   }, [filters.category, activity]);
 
-  useEffect(() => {https://drive.google.com/file/d/1aWdtAg8VzE4nW2rv2R3SFGx9gRER-Yf-/view?usp=drive_link
+  useEffect(() => {
     if (filters.city.length > 0) {
       setSecondFilteredActivity(
         firstFilteredActivity.filter((item) => filters.city.some((filter) => filter === item.city)),

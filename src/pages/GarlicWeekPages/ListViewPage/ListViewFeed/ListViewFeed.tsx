@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { BaseFeed } from '@app/components/common/BaseFeed/BaseFeed';
 import { NotFound } from '@app/components/common/NotFound/NotFound';
 import { ListViewItem } from '@app/pages/GarlicWeekPages/ListViewPage/ListViewFeed/ListViewItem/ListViewItem';
-import {GarlicEvents, GetSortFunction, SortBy} from '@app/api/events.api';
+import {GarlicEvents, GetSortFunction, IsLoadingGarlicEvents, SortBy} from '@app/api/events.api';
 import * as S from './ListViewFeed.styles';
 import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
 import { Space } from 'antd';
@@ -63,7 +63,9 @@ export const ListViewFeed: React.FC<ListViewFeedProps> = ({ activity, hasMore, n
           </BaseFeed>
         </S.FeedWrapper>
       ) : (
-        <NotFound />
+        <NotFound
+            message={IsLoadingGarlicEvents ? "Please wait while we getting your garlic ready" : undefined}
+        />
       )}
       {detailModal && (
         <BaseModal

@@ -132,7 +132,7 @@ export default function Mapbox() {
               category={city.category}
             />
           ) : (
-            <Pin title={<></>} category={city.category} />
+            <Pin title={undefined} category={city.category} />
           )}
         </Marker>
       )),

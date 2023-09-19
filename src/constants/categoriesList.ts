@@ -14,7 +14,7 @@ export interface Category {
 export const categoriesList: Category[] = [
   {
     name: 'Farm',
-    title: 'Farm',
+    title: 'Farmer',
   },
   {
     name: "Farmers' Market",

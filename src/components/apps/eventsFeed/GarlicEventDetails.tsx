@@ -122,7 +122,7 @@ export function GarlicEventDetails({garlicEvent, logoSize}: {garlicEvent: Garlic
                             height: actualLogoSize,
                             marginRight: 8,
                             backgroundImage: `url("${garlicEvent.logoUrl}")`,
-                            backgroundSize: "100%",
+                            backgroundSize: "contain",
                             backgroundRepeat: "no-repeat",
                             display: "inline-block",
                             marginLeft: 0,

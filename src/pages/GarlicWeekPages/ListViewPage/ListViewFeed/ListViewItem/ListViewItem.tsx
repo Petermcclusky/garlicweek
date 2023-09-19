@@ -67,7 +67,7 @@ export const ListViewItem: React.FC<ListViewItemProps> = ({ activity, onClick })
                               height: 64,
                               marginRight: 8,
                               backgroundImage: `url("${activity.logoUrl}")`,
-                              backgroundSize: "100%",
+                              backgroundSize: "contain",
                               backgroundRepeat: "no-repeat",
                             backgroundPosition: "center",
                               display: "inline-block",

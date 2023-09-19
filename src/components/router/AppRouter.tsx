@@ -18,6 +18,7 @@ import NftDashboardPage from '@app/pages/DashboardPages/NftDashboardPage';
 import MedicalDashboardPage from '@app/pages/DashboardPages/MedicalDashboardPage';
 import MapViewPage from '@app/pages/GarlicWeekPages/MapViewPage/MapViewPage';
 import ListViewPage from '@app/pages/GarlicWeekPages/ListViewPage/ListViewPage';
+import TOSComponent from "@app/components/tos/TOSComponent";
 
 const Logout = React.lazy(() => import('./Logout'));
 
@@ -27,6 +28,7 @@ export const MEDICAL_DASHBOARD_PATH = '/medical-dashboard';
 const MedicalDashboard = withLoading(MedicalDashboardPage);
 const MapView = withLoading(MapViewPage);
 const ListView = withLoading(ListViewPage);
+const TOSView = withLoading(TOSComponent);
 const NftDashboard = withLoading(NftDashboardPage);
 
 const AuthLayoutFallback = withLoading(AuthLayout);
@@ -47,6 +49,7 @@ export const AppRouter: React.FC = () => {
           <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />
           <Route path={NFT_DASHBOARD_PATH} element={<NftDashboard />} />
           <Route path="mapview" element={<MapView />} />
+          <Route path="terms" element={<TOSView />} />
         </Route>
         <Route path="/auth" element={<AuthLayoutFallback />}>
           <Route path="login" element={<LoginPage />} />

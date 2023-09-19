@@ -16,7 +16,9 @@ export const References: React.FC = () => {
              color: "#008F3F",
            }}
         >
-          Ontario Garlic Week{' '}
+            <u>
+                Ontario Garlic Week{' '}
+            </u>
         </a>
         is a project of {' '}
         <a href="https://www.torontogarlicfestival.ca/" target="_blank" rel="noreferrer"
@@ -24,9 +26,21 @@ export const References: React.FC = () => {
             color: "#008F3F",
           }}
         >
-          Toronto Garlic Festival
+          <u>
+              Toronto Garlic Festival
+          </u>
         </a>
-        &nbsp;(an Ontario not-for-profit)
+        &nbsp;(an Ontario not-for-profit),&nbsp;
+
+          <a href="./terms" target="" rel="noreferrer"
+             style={{
+                 color: "#008F3F",
+             }}
+          >
+              <u>
+                  Terms of use
+              </u>
+          </a>
       </S.Text>
       <S.Icons>
         <a href="https://twitter.com/ONGarlicWeek" target="_blank" rel="noreferrer"

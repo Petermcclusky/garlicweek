@@ -47,6 +47,7 @@ interface PopupInfo {
 }
 
 export default function Mapbox() {
+    const popupMaxHeight = 300;
   const dispatch = useDispatch();
   const theme = useAppSelector((state) => state.theme.theme);
   const filter: Array<string> = useAppSelector((state) => state.filter.filter.category);
@@ -91,15 +92,15 @@ export default function Mapbox() {
           key={`marker-${index}`}
           longitude={city.coordinate ? city.coordinate[0] : 0}
           latitude={city.coordinate ? city.coordinate[1] : 0}
-          anchor="bottom"
           onClick={(e) => {
             // If we let the click event propagates to the map, it will immediately close the popup
             // with `closeOnClick: true`
-            if (mapRef.current && city.coordinate) {
-                mapRef.current?.panTo({
+            const map = mapRef.current
+            if (map && city.coordinate) {
+                map.panTo({
                     lat: city.coordinate[1],
                     lng: city.coordinate[0],
-                })
+                }, { offset: [0, popupMaxHeight * 0.5]});
             }
             e.originalEvent.stopPropagation();
             setPopupInfo(city);
@@ -167,7 +168,6 @@ export default function Mapbox() {
 
         {popupInfo && (
           <Popup
-            anchor="top"
             longitude={Number(popupInfo.coordinate ? popupInfo.coordinate[0] : 0)}
             latitude={Number(popupInfo.coordinate ? popupInfo.coordinate[1] : 0)}
             onClose={() => {
@@ -179,7 +179,7 @@ export default function Mapbox() {
           >
               <div
                   style={{
-                      maxHeight: 300,
+                      maxHeight: popupMaxHeight,
                       overflowY: "auto",
                   }}
               >

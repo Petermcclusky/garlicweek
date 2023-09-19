@@ -5,7 +5,6 @@ import {MainHeader} from '../MainHeader/MainHeader';
 import * as S from './MainLayout.styles';
 import * as L from '@app/pages/GarlicWeekPages/ListViewPage/ListView.styles';
 import {Outlet, useLocation} from 'react-router-dom';
-import {MEDICAL_DASHBOARD_PATH, NFT_DASHBOARD_PATH} from '@app/components/router/AppRouter';
 import {References} from '@app/components/common/References/References';
 
 import {ListViewHeader} from '@app/pages/GarlicWeekPages/ListViewPage/ListViewHeader/ListViewHeader';
@@ -31,10 +30,6 @@ const MainLayout: React.FC = () => {
   const location = useLocation();
 
   const toggleSider = () => setSiderCollapsed(!siderCollapsed);
-
-  useEffect(() => {
-    setIsTwoColumnsLayout([MEDICAL_DASHBOARD_PATH, NFT_DASHBOARD_PATH].includes(location.pathname) && isDesktop);
-  }, [location.pathname, isDesktop]);
 
   const [activity, setActivity] = useState<GarlicEvents[]>([]);
   const [firstFilteredActivity, setFirstFilteredActivity] = useState<GarlicEvents[]>([]);

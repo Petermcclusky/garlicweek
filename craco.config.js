@@ -8,6 +8,7 @@ module.exports = {
   webpack: {
     plugins: [
       new WebpackBar({ profile: true }),
+      // [new BundleAnalyzerPlugin({ openAnalyzer: false })],
       ...(process.env.NODE_ENV === 'development' ? [new BundleAnalyzerPlugin({ openAnalyzer: false })] : []),
     ],
   },

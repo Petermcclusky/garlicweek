@@ -16,6 +16,12 @@ interface DesktopHeaderProps {
   isTwoColumnsLayout: boolean;
 }
 
+// {/*<BaseCol lg={2} xxl={2} xl={3}>*/} // old logo
+// {/*  {theme === 'light' ? (*/}
+// {/*    <img src="/logo-light.png" style={{ height: '70px' }} />*/}
+// {/*  ) : (*/}
+// {/*    <img src="/logo-dark.png" style={{ height: '70px' }} />*/}
+// {/*  )}*/}
 export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout }) => {
   const theme = useAppSelector((state) => state.theme.theme);
   const leftSide = isTwoColumnsLayout ? (
@@ -31,35 +37,75 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
     </S.SearchColumn>
   ) : (
     <>
-      {/* <BaseRow align="middle" justify="space-between" gutter={[5, 5]}> */}
-      <BaseCol lg={2} xxl={2} xl={3}>
-        {theme === 'light' ? (
-          <img src="/logo-light.png" style={{ height: '70px' }} />
-        ) : (
-          <img src="/logo-dark.png" style={{ height: '70px' }} />
-        )}
-      </BaseCol>
-      {/* </BaseRow> */}
+        <div
+            style={{
+                marginRight: 8,
+                flex: 1,
+                maxWidth: 465,
+                height: 140,
+            }}
+        >
+            <div
+                style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: `url("./header_image.jpg")`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                    display: "inline-block",
+                }}
+            >
+            </div>
+        </div>
     </>
   );
 
   return (
-    <BaseRow justify="space-between" align="middle">
+    <BaseRow justify="space-between" align="middle"
+             style={{
+                 display: "flex",
+             }}
+    >
       {leftSide}
 
-      <S.ProfileColumn xl={10} xxl={9} $isTwoColumnsLayout={isTwoColumnsLayout}>
+      <S.ProfileColumn $isTwoColumnsLayout={isTwoColumnsLayout}>
         <BaseRow align="middle" justify="end" gutter={[5, 5]}>
           <BaseCol>
             <BaseRow gutter={[{ xxl: 5 }, { xxl: 5 }]}>
               <BaseCol>
                 <S.JButton />
               </BaseCol>
-              <BaseCol>
+              <BaseCol
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginRight: 4,
+                }}
+              >
+                  <div
+                    style={{marginRight: 4}}
+                  >
+                      List View:
+                  </div>
                 <ListViewButton />
               </BaseCol>
-              <BaseCol>
-                <MapViewButton />
-              </BaseCol>
+
+                <BaseCol
+                    style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                    }}
+                >
+                    <div
+                        style={{marginRight: 4}}
+                    >
+                        Map View:
+                    </div>
+                    <MapViewButton />
+                </BaseCol>
               {/*<BaseCol>*/}
               {/*  <CalendarViewButton />*/}
               {/*</BaseCol>*/}

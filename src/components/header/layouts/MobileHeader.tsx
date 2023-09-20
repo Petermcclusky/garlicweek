@@ -17,18 +17,23 @@ interface MobileHeaderProps {
   isSiderOpened: boolean;
 }
 
+
+// <BaseCol> // old logo
+//     {theme === 'light' ? (
+//         <img src="/logo-light.png" style={{ height: '60px' }} />
+//     ) : (
+//         <img src="/logo-dark.png" style={{ height: '60px' }} />
+//     )}
+// </BaseCol>
+
 export const MobileHeader: React.FC<MobileHeaderProps> = ({ toggleSider, isSiderOpened }) => {
     const theme = useAppSelector((state) => state.theme.theme);
 
     return (
-    <BaseRow align="middle">
-        <BaseCol>
-            {theme === 'light' ? (
-                <img src="/logo-light.png" style={{ height: '60px' }} />
-            ) : (
-                <img src="/logo-dark.png" style={{ height: '60px' }} />
-            )}
-        </BaseCol>
+    <BaseRow align="middle"
+        style={{
+        }}
+    >
       <BaseCol
       >
         <JoinMobileButton />

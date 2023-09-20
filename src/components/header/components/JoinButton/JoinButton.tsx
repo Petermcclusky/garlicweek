@@ -23,7 +23,7 @@ export const JoinButton: React.FC = (props) => {
 };
 
 const Button = styled(BaseButton)<{ $isDark: boolean }>`
-  color: ${(props) => BASE_COLORS[props.$isDark ? 'white' : 'bgblack']};
+    // color: ${(props) => BASE_COLORS[props.$isDark ? 'white' : 'bgblack']};
   background: ${(props) => BASE_COLORS[props.$isDark ? 'bgblack' : 'white']};
   border-radius: 50px;
   padding-top: 0;
@@ -31,6 +31,7 @@ const Button = styled(BaseButton)<{ $isDark: boolean }>`
   display: flex;
   align-items: center;
   margin-right: 30px;
+  color: #ff4b4b;
 
   &:hover,
   &:active,

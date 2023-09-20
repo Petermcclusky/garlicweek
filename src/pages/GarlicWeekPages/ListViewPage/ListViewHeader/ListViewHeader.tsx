@@ -19,13 +19,9 @@ export const ListViewHeader: React.FC<ListViewHeaderProps> = ({ filters, setFilt
 
   return (
     <>
-      <NFTCardHeader
-          title={'Ontario Garlic Week is Sept 22-Oct 1, 2023. Map Your Garlic Adventure Now!'}
-      >
         {mobileOnly && (
           <BaseButton size="large" noStyle type="text" icon={<FilterIcon />} onClick={() => setModalOpen(true)} />
         )}
-      </NFTCardHeader>
 
       {mobileOnly && (
         <BaseModal open={isModalOpen} onCancel={() => setModalOpen(false)} footer={null}>

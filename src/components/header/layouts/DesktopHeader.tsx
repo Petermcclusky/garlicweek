@@ -76,34 +76,10 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
               <BaseCol>
                 <S.JButton />
               </BaseCol>
-              <BaseCol
-                style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    marginRight: 4,
-                }}
-              >
-                  <div
-                    style={{marginRight: 4}}
-                  >
-                      List View:
-                  </div>
+              <BaseCol >
                 <ListViewButton />
               </BaseCol>
-
-                <BaseCol
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        alignItems: "center",
-                    }}
-                >
-                    <div
-                        style={{marginRight: 4}}
-                    >
-                        Map View:
-                    </div>
+                <BaseCol>
                     <MapViewButton />
                 </BaseCol>
               {/*<BaseCol>*/}

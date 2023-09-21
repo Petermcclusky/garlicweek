@@ -64,7 +64,7 @@ export const ListViewFeed: React.FC<ListViewFeedProps> = ({ activity, hasMore, n
         </S.FeedWrapper>
       ) : (
         <NotFound
-            message={IsLoadingGarlicEvents ? "Please wait while we getting your garlic ready" : undefined}
+            message={IsLoadingGarlicEvents ? "Please wait while we are getting your garlic ready" : undefined}
         />
       )}
       {detailModal && (

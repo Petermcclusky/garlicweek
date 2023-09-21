@@ -11,9 +11,16 @@ export const MapViewButton: React.FC = () => {
   return (
     <Link to="/mapview">
       <HeaderActionWrapper>
-        <BaseTooltip title="Map View">
-          <BaseButton type={location.pathname === '/mapview' ? 'ghost' : 'text'} icon={<GlobalOutlined />} />
-        </BaseTooltip>
+        <BaseButton
+            style={{
+                display: "flex",
+                flexDirection: "row-reverse",
+            }}
+            type={location.pathname === '/mapview' ? 'ghost' : 'text'}
+            icon={<GlobalOutlined  style={{marginLeft: 4}}/>}
+        >
+            Map View
+        </BaseButton>
       </HeaderActionWrapper>
     </Link>
   );

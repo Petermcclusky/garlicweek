@@ -11,9 +11,16 @@ export const ListViewButton: React.FC = () => {
   return (
     <Link to="/">
       <HeaderActionWrapper>
-        <BaseTooltip title="List View">
-          <BaseButton type={location.pathname === '/' ? 'ghost' : 'text'} icon={<UnorderedListOutlined />} />
-        </BaseTooltip>
+          <BaseButton
+              style={{
+                  display: "flex",
+                  flexDirection: "row-reverse",
+              }}
+              type={location.pathname === '/' ? 'ghost' : 'text'}
+              icon={<UnorderedListOutlined style={{marginLeft: 4}} />}
+          >
+              List View
+          </BaseButton>
       </HeaderActionWrapper>
     </Link>
   );

@@ -5,7 +5,7 @@ export interface WindowSize {
     height: number;
 }
 
-const useWindowSize = (delay: number = 0): WindowSize => {
+const useWindowSize = (delay = 0): WindowSize => {
     const [windowSize, setWindowSize] = useState<WindowSize>({
         width: window.innerWidth,
         height: window.innerHeight,

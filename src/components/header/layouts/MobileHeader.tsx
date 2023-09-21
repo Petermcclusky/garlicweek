@@ -48,7 +48,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ toggleSider, isSider
                 style={{
                     width: "100%",
                     height: "100%",
-                    backgroundImage: `linear-gradient(#ffffff63, var(--layout-body-bg-color) 100%), url("./header_background.jpg")`,
+                    backgroundImage: `linear-gradient(#ffffff91, var(--layout-body-bg-color) 100%), url("./header_background.jpg")`,
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "50% 0%",

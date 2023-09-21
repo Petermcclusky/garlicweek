@@ -141,7 +141,7 @@ export function GarlicEventDetails({garlicEvent, logoSize}: {garlicEvent: Garlic
             {participationDetailsSection}
             {garlicSpotlightSection}
             {TextWithBoldHeader("Address:", garlicEvent.address + ", " + garlicEvent.city + ', Ontario, Canada, ' + garlicEvent.postalCode)}
-            {TextWithBoldHeader("Business hours:", garlicEvent.businessHours)}
+            {TextWithBoldHeader("Business Hours:", garlicEvent.businessHours)}
             {TextWithBoldHeader("Last Day of Season:", garlicEvent.lastDayOfSeason)}
             {contactCard}
             <BreakLine/>

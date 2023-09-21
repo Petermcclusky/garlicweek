@@ -11,6 +11,7 @@ import * as S from '../Header.styles';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
+import useWindowSize from "@app/components/common/UseWindowSize";
 
 interface DesktopHeaderProps {
   isTwoColumnsLayout: boolean;
@@ -22,44 +23,28 @@ interface DesktopHeaderProps {
 // {/*  ) : (*/}
 // {/*    <img src="/logo-dark.png" style={{ height: '70px' }} />*/}
 // {/*  )}*/}
+// {/*background-image: radial-gradient(farthest-corner at center top,#ffffff00 10%, #f8fbff 80%), url(./header_image.jpg);*/}
+
 export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout }) => {
-  const theme = useAppSelector((state) => state.theme.theme);
-  const leftSide = isTwoColumnsLayout ? (
-    <S.SearchColumn xl={16} xxl={17}>
-      <BaseRow justify="space-between">
-        <BaseCol xl={15} xxl={12}>
-          <HeaderSearch />
-        </BaseCol>
-        <BaseCol>
-          <S.JButton />
-        </BaseCol>
-      </BaseRow>
-    </S.SearchColumn>
-  ) : (
-    <>
-        <div
-            style={{
-                marginRight: 8,
-                flex: 1,
-                maxWidth: 465,
-                height: 140,
-            }}
-        >
-            <div
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    backgroundImage: `url("./header_image.jpg")`,
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    display: "inline-block",
-                }}
-            >
-            </div>
-        </div>
-    </>
-  );
+    const { width, height } = useWindowSize();
+    const headerHeight = Math.min(300, height * 0.3);
+
+    // const imageWidth = 820;
+    // const imageHeight = 820;
+    // const headerImageAspectRatio = 820 / 312; // w / h
+    // const endOfHeaderTextInImage = 66;
+    // let headerScale = 0;
+    // if (width / headerHeight > headerImageAspectRatio) {
+    //     headerScale = width / imageWidth;
+    // } else {
+    //     headerScale = headerHeight / imageHeight;
+    // }
+
+    const theme = useAppSelector((state) => state.theme.theme);
+
+    const logoTopOffset = 8;
+    const logoHeight = 64;
+    const endOfHeaderMainImage = logoTopOffset + logoHeight;
 
   return (
     <BaseRow justify="space-between" align="middle"
@@ -67,9 +52,54 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
                  display: "flex",
              }}
     >
-      {leftSide}
 
-      <S.ProfileColumn $isTwoColumnsLayout={isTwoColumnsLayout}>
+        <div
+            style={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                left: 0,
+                height: headerHeight,
+            }}
+        >
+            <div
+                style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: `linear-gradient(#ffffff63, var(--layout-body-bg-color) 100%), url("./header_background.jpg")`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "50% 0%",
+                    display: "inline-block",
+                    maskImage: "linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0))",
+
+                }}
+            >
+            </div>
+        </div>
+
+        <div
+            style={{
+                position: "absolute",
+                top: 8,
+                right: 0,
+                left: 0,
+                height: logoHeight,
+                backgroundImage: `url("./logo-light.png")`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+            }}
+        >
+        </div>
+
+        <div></div>
+
+      <S.ProfileColumn $isTwoColumnsLayout={isTwoColumnsLayout}
+        style={{
+            marginTop: endOfHeaderMainImage,
+        }}
+      >
         <BaseRow align="middle" justify="end" gutter={[5, 5]}>
           <BaseCol>
             <BaseRow gutter={[{ xxl: 5 }, { xxl: 5 }]}>

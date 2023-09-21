@@ -84,26 +84,6 @@ const MainLayout: React.FC = () => {
     <S.LayoutMaster>
       {/* <MainSider isCollapsed={siderCollapsed} setCollapsed={setSiderCollapsed} /> */}
       <S.LayoutMain>
-        {isTablet == false &&
-            <div
-                style={{
-                  height: 140,
-                }}
-            >
-              <div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    backgroundImage: `url("./header_image.jpg")`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "50% 0%",
-                    display: "inline-block",
-                  }}
-              >
-              </div>
-            </div>
-        }
         <MainHeader isTwoColumnsLayout={false}>
           <Header toggleSider={toggleSider} isSiderOpened={!siderCollapsed} isTwoColumnsLayout={false} />
         </MainHeader>

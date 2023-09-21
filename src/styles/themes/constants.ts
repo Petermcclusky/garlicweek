@@ -20,7 +20,7 @@ export const LAYOUT = {
   mobile: {
     paddingVertical: '0.75rem',
     paddingHorizontal: '1rem',
-    headerHeight: '4.25rem',
+    headerHeight: '120px !important',
     headerPadding: '1rem',
   },
   desktop: {

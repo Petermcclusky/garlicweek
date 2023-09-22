@@ -15,6 +15,7 @@ export interface GarlicEvents {
   garlickyFeature?: string;
   garlickySpotlight?: string;
   address: string;
+  address2: string;
   activityDate?: string;
   city: string;
   postalCode?: string;
@@ -50,6 +51,7 @@ export const EmptyGarlicEvents = {
   participationDetails: '',
   garlickyFeature: '',
   address: '',
+  address2: '',
   activityDate: '',
   city: '',
   postalCode: '',
@@ -134,6 +136,7 @@ async function ProcessCSV(results: ParseResult<Record<string, string>>, resolve:
       garlickyFeature: row[8], // Farm stand garlic sales, for culinary use and seed.
       garlickySpotlight: row[10],
       address: row[12], //9887 flycreek rd,
+      address2: row[13], //9887 flycreek rd,
       activityDate: row[9], //Sept 22-Oct1
       city: row[14], // North augusta
       postalCode: row[15], //K0g1r0

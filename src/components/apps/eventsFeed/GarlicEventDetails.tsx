@@ -92,6 +92,12 @@ export function GarlicEventDetails({garlicEvent, logoSize}: {garlicEvent: Garlic
             );
     }
 
+    let address = garlicEvent.address;
+    if (garlicEvent.address2 && garlicEvent.address2.length > 0) {
+        address += `, ${garlicEvent.address2}`;
+    }
+    address += `, ${garlicEvent.city}, Ontario, Canada, ${garlicEvent.postalCode}`;
+
     const cuisineTypeSection: JSX.Element| null = TextWithBoldHeader("Cuisine:", garlicEvent.cuisineType);
     const dietaryOptionsSection: JSX.Element| null = TextWithBoldHeader("Dietary Options:", garlicEvent.dietaryOptions, true);
     const amenitiesSection: JSX.Element| null = TextWithBoldHeader("Amenities:", garlicEvent.amenities, true);
@@ -140,7 +146,7 @@ export function GarlicEventDetails({garlicEvent, logoSize}: {garlicEvent: Garlic
             </div>
             {participationDetailsSection}
             {garlicSpotlightSection}
-            {TextWithBoldHeader("Address:", garlicEvent.address + ", " + garlicEvent.city + ', Ontario, Canada, ' + garlicEvent.postalCode)}
+            {TextWithBoldHeader("Address:", address)}
             {TextWithBoldHeader("Business Hours:", garlicEvent.businessHours)}
             {TextWithBoldHeader("Last Day of Season:", garlicEvent.lastDayOfSeason)}
             {contactCard}

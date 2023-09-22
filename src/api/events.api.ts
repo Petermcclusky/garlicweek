@@ -121,6 +121,10 @@ async function ProcessCSV(results: ParseResult<Record<string, string>>, resolve:
       } catch (e) { }
     }
 
+    let sortableBusinessName = row[4].toUpperCase().trim();
+    if (sortableBusinessName.startsWith("THE")) {
+      sortableBusinessName = sortableBusinessName.substring(3).trim();
+    }
     const fakeId = (i - 1).toString();
     const event = {
       _id: fakeId,
@@ -143,7 +147,7 @@ async function ProcessCSV(results: ParseResult<Record<string, string>>, resolve:
       otherSocialMedia: row[35],
       details: row[7], // Farm stand garlic sales, culinary and seed.
       businessName: row[4], //Flycreek farm
-      businessNameSortable: row[4].toUpperCase(), //Flycreek farm
+      businessNameSortable: sortableBusinessName, //Flycreek farm
       businessHours: row[50],
       credit: row[51],
       coordinate: latLongValues,

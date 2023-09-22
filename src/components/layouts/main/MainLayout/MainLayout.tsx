@@ -53,7 +53,15 @@ const MainLayout: React.FC = () => {
     getEvents().then((newActivity) => setActivity(activity.concat(newActivity)));
   };
 
-  dispatch(setCityFilter([...new Set(activity.map((obj) => obj.city))]));
+  const cities: string[] = []
+  for (let i = 0; i < activity.length; i++) {
+    const city = activity[i].city.trim();
+    if (city && city.length > 0) {
+      cities.push(city);
+    }
+  }
+  cities.sort();
+  dispatch(setCityFilter([...new Set(cities)]));
 
   useEffect(() => {
     if (filters.category.length > 0) {

@@ -43,7 +43,7 @@ export const References: React.FC = () => {
           </a>
       </S.Text>
       <S.Icons>
-        <a href="https://twitter.com/ONGarlicWeek" target="_blank" rel="noreferrer"
+        <a href="https://www.toronto.ca/services-payments/water-environment/live-green-toronto/" target="_blank" rel="noreferrer"
            style={{
                marginRight: 4
            }}
@@ -60,7 +60,7 @@ export const References: React.FC = () => {
             >
             </div>
         </a>
-        <a href="https://twitter.com/ONGarlicWeek" target="_blank" rel="noreferrer"
+        <a href="https://torontogarlicfestival.ca/" target="_blank" rel="noreferrer"
            style={{
                marginLeft: 4,
                marginRight: 4,

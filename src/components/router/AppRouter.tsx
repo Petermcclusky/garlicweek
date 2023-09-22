@@ -15,16 +15,10 @@ const TOSView = withLoading(TOSComponent);
 
 
 export const AppRouter: React.FC = () => {
-  const protectedLayout = (
-    <RequireAuth>
-      <MainLayout />
-    </RequireAuth>
-  );
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={protectedLayout}>
+        <Route path="/" element={<MainLayout />}>
           <Route index element={<ListView />} />
           <Route path="mapview" element={<MapView />} />
           <Route path="terms" element={<TOSView />} />

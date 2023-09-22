@@ -45,6 +45,41 @@ export const References: React.FC = () => {
       <S.Icons>
         <a href="https://twitter.com/ONGarlicWeek" target="_blank" rel="noreferrer"
            style={{
+               marginRight: 4
+           }}
+        >
+            <div
+                style={{
+                    width: 110,
+                    height: 32,
+                    backgroundImage: `url("./livegreen_logo.jpg")`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                }}
+            >
+            </div>
+        </a>
+        <a href="https://twitter.com/ONGarlicWeek" target="_blank" rel="noreferrer"
+           style={{
+               marginLeft: 4,
+               marginRight: 4,
+           }}
+        >
+            <div
+                style={{
+                    width: 80,
+                    height: 32,
+                    backgroundImage: `url("./tgf_logo.png")`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                }}
+            >
+            </div>
+        </a>
+        <a href="https://twitter.com/ONGarlicWeek" target="_blank" rel="noreferrer"
+           style={{
              color: "#008F3F",
            }}
         >

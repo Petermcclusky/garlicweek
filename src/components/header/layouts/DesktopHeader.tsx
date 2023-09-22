@@ -66,7 +66,7 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
                 style={{
                     width: "100%",
                     height: "100%",
-                    backgroundImage: `linear-gradient(#ffffff91, var(--layout-body-bg-color) 100%), url("./header_background.jpg")`,
+                    backgroundImage: `linear-gradient(#ffffff61, var(--layout-body-bg-color) 100%), url("./header_background.jpg")`,
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "50% 0%",
@@ -85,7 +85,7 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
                 right: 0,
                 left: 0,
                 height: logoHeight,
-                backgroundImage: `url("./logo-light.png")`,
+                backgroundImage: `url("./header_logo.png")`,
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
@@ -115,12 +115,6 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
               {/*<BaseCol>*/}
               {/*  <CalendarViewButton />*/}
               {/*</BaseCol>*/}
-              <BaseCol>
-                <HeaderFullscreen />
-              </BaseCol>
-              <BaseCol>
-                <SettingsDropdown />
-              </BaseCol>
             </BaseRow>
           </BaseCol>
         </BaseRow>

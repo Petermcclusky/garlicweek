@@ -33,6 +33,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ toggleSider, isSider
     return (
     <BaseRow align="middle"
         style={{
+            marginTop: endOfHeaderMainImage,
         }}
     >
         <div
@@ -48,37 +49,29 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ toggleSider, isSider
                 style={{
                     width: "100%",
                     height: "100%",
-                    backgroundImage: `linear-gradient(#ffffff91, var(--layout-body-bg-color) 100%), url("./header_background.jpg")`,
+                    backgroundImage: `linear-gradient(#ffffff61, var(--layout-body-bg-color) 100%), url("./header_background.jpg")`,
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "50% 0%",
                 }}
             >
             </div>
+
+            <div
+                style={{
+                    position: "absolute",
+                    top: 8,
+                    right: 0,
+                    left: 0,
+                    height: logoHeight,
+                    backgroundImage: `url("./header_logo.png")`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                }}
+            >
+            </div>
         </div>
-
-        {/*<div*/}
-        {/*    style={{*/}
-        {/*        position: "absolute",*/}
-        {/*        top: 8,*/}
-        {/*        right: 0,*/}
-        {/*        left: 0,*/}
-        {/*        height: logoHeight,*/}
-        {/*        backgroundImage: `url("./logo-light.png")`,*/}
-        {/*        backgroundSize: "contain",*/}
-        {/*        backgroundRepeat: "no-repeat",*/}
-        {/*        backgroundPosition: "center",*/}
-        {/*    }}*/}
-        {/*>*/}
-        {/*</div>*/}
-
-        <BaseCol>
-            {theme === 'light' ? (
-                <img src="/logo-light.png" style={{ height: '60px' }} />
-            ) : (
-                <img src="/logo-dark.png" style={{ height: '60px' }} />
-            )}
-        </BaseCol>
       <BaseCol
       >
         <JoinMobileButton />
@@ -99,14 +92,6 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ toggleSider, isSider
           {/*</BaseCol>*/}
         </BaseRow>
       </BaseCol>
-      <S.BurgerCol
-      style = {{
-          marginLeft: "auto",
-      }}>
-        <BaseCol>
-          <SettingsDropdown />
-        </BaseCol>
-      </S.BurgerCol>
     </BaseRow>
   );
 };

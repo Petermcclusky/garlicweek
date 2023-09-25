@@ -95,6 +95,18 @@ const MainLayout: React.FC = () => {
         <MainHeader isTwoColumnsLayout={false}>
           <Header toggleSider={toggleSider} isSiderOpened={!siderCollapsed} isTwoColumnsLayout={false} />
         </MainHeader>
+        <BaseRow
+            style={{
+              zIndex: 1,
+              textAlign: "center",
+              margin: isTablet ? "auto" : "auto 16px auto 16px",
+              color: "#008F3F",
+              fontWeight: "600",
+              fontSize: isTablet ? 20 : 16,
+            }}
+        >
+          From Sept 22 to Oct 1, 2023 follow your nose to Ontario grown garlic!
+        </BaseRow>
         <MainContent id="main-content" $isTwoColumnsLayout={false}>
           <div>{/* <Outlet /> */}</div>
           <BaseRow gutter={[30, 0]}>
